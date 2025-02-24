@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, Head, usePage } from "@inertiajs/react";
+import { useForm, Head, usePage, router } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
 export default function Edit() {
@@ -16,11 +16,11 @@ export default function Edit() {
         e.preventDefault();
         await put(`/reserve/${reservation.id}`, {
             onSuccess: () => {
-                window.location.href = "/reserve"; // กลับไปหน้าเลือกโต๊ะหลังจากการแก้ไขสำเร็จ
+                router.visit("/reserve"); // ใช้ router.visit แทน window.location.href
             },
-            onError: () => {
-                console.log("มีข้อผิดพลาด", errors);
-            }
+            onError: (errors) => {
+                console.log("มีข้อผิดพลาด", errors); // แสดงข้อผิดพลาดใน console
+            },
         });
     };
 
@@ -47,7 +47,8 @@ export default function Edit() {
                                             value={data.first_name}
                                             onChange={e => setData('first_name', e.target.value)}
                                             required
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                        />
                                         {errors.first_name && <p className="text-red-500 text-sm">{errors.first_name}</p>}
                                     </div>
 
@@ -58,7 +59,8 @@ export default function Edit() {
                                             value={data.last_name}
                                             onChange={e => setData('last_name', e.target.value)}
                                             required
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                        />
                                         {errors.last_name && <p className="text-red-500 text-sm">{errors.last_name}</p>}
                                     </div>
 
@@ -69,7 +71,8 @@ export default function Edit() {
                                             value={data.email}
                                             onChange={e => setData('email', e.target.value)}
                                             required
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                        />
                                         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                                     </div>
 
@@ -80,7 +83,8 @@ export default function Edit() {
                                             value={data.phone}
                                             onChange={e => setData('phone', e.target.value)}
                                             required
-                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+                                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                        />
                                         {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
                                     </div>
 

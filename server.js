@@ -37,6 +37,22 @@ app.delete('/shabu/cancel/:id', (req, res) => {
     res.send(`Reservation with ID: ${id} has been canceled`);
 });
 
+// Define the route for fetching table data
+app.get('/shabu/table/:id', (req, res) => {
+    const id = req.params.id;
+    // Logic to fetch table data from the database
+    // For example:
+    // db.query('SELECT * FROM tables WHERE id = ?', [id], (err, result) => {
+    //     if (err) throw err;
+    //     if (result.length > 0) {
+    //         res.json(result[0]);
+    //     } else {
+    //         res.status(404).send('Table not found');
+    //     }
+    // });
+    res.json({ id: id, seat: 4 }); // Example response
+});
+
 app.get('/form', (req, res) => {
     res.send(`
         <form action="/process" method="POST">

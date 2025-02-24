@@ -35,5 +35,3 @@ function cancelReservation(id) {
 // Example usage
 // updateReservation(1);
 // cancelReservation(1);
-
-// ...existing code...

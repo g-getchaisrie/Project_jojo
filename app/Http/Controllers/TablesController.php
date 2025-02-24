@@ -69,7 +69,7 @@ class TablesController extends Controller
     }
     public function reserve(Request $request, $id)
     {
-        $table = Table::findOrFail($id);
+        $table = Tables::findOrFail($id);
 
         // อัพเดตสถานะโต๊ะ
         $table->update([
